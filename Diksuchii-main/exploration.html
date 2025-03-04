@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploration Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="nav.css" />
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 1000px;
+        }
+
+        .navbar { 
+            display: flex; 
+            justify-content: center; /* Center the navbar content */
+            padding: 10px; 
+            background: #111b46;
+            color: rgb(0, 0, 0); 
+            align-items: center;
+        }
+
+        .nav-links { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+
+        .nav-links a { 
+            color: blue; /* Change to blue */
+            padding: 10px 15px; 
+            text-decoration: none; 
+        }
+
+        .nav-links .dropdown { 
+            position: relative; 
+            color: blue; /* Change to blue */
+        }
+
+        .nav-links .dropdown a { 
+            position: relative; 
+            color: blue; /* Change to blue */
+        }
+
+        .nav-links .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background-color: #2b1288; 
+            min-width: 200px; 
+            z-index: 1; 
+        }
+
+        .nav-links .dropdown .dropbtn {
+            background-color: #111b46;
+            color: rgb(255, 255, 255);
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-links .dropdown-content a { 
+            color: rgb(0, 0, 0); 
+            padding: 10px 15px; 
+            text-decoration: none; 
+            display: block; 
+        }
+
+        .nav-links .dropdown:hover .dropdown-content { 
+            display: block; 
+        }
+
+        .profile { 
+            margin-left: 20px; 
+        }
+
+        .profile-icon { 
+            width: 40px; 
+            border-radius: 50%; 
+        }
+
+        .nav-feature { 
+            padding: 10px 15px; 
+            color: rgb(0, 0, 0); 
+            cursor: pointer; 
+        }
+
+        .nav-feature:hover { 
+            text-decoration: underline; 
+        }
+
+        .shortened { 
+            display: inline-block; 
+            max-width: 200px; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
+        }
+
+        /* Dropdown content visible */
+        .dropdown-content-profile.show {
+            display: block;
+        }
+
+        .ex h1 {
+            text-align: center;
+            color: #001f3f; /* Dark blue color */
+            font-size: 40px;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            padding: 50px;
+            padding-top: 50px;
+        }
+
+        .box {
+            background-color: #ffffff; /* White background */
+            border: 2px solid #001f3f; /* Dark blue border */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .box h2 {
+            color: #001f3f; /* Dark blue text */
+            margin-bottom: 15px;
+        }
+
+        .box p {
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .box:hover {
+            background-color: #FFD700; /* Golden background on hover */
+            transform: translateY(-10px);
+        }
+
+        .highlight {
+            background-color: #ffffff; /* Dark blue background */
+            color: #ffffff; /* White text */
+        }
+
+        .highlight h2,
+        .highlight p {
+            color: #010101; /* White text */
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #001f3f; /* Dark blue button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #FFD700; /* Golden background on hover */
+        }
+
+        .link-btn {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .link-btn:hover {
+            color: #001f3f; /* Change text color to dark blue on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <!-- Logo to the left -->
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo2.png" alt="Logo" class="mr-80 h-16 w-40">
+            </a>
+        </div>
+        
+        <!-- Centered nav-links -->
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="exploration.html" class="dropbtn">Schools</a>
+                <div class="dropdown-content">
+                    <a href="school8-10.html">8th-10th</a>
+                    <a href="index.html">11th-12th</a>
+                </div>
+               
+            </div>
+            <div class="dropdown">
+                <a href="i.html" class="dropbtn">Courses</a>
+                <div class="dropdown-content">
+                    <a href="engineer.html">Engineering</a>
+                    <a href="placement.html">Management</a>
+                    <a href="internshipsweb.html">Media</a>
+                    <a href="placement.html">Animation and Design</a>
+                    <a href="internshipsweb.html">Medicine</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="exploration.html" class="dropbtn">Exploration</a>
+            </div>
+            <div class="dropdown">
+                <a href="resourses.html" class="dropbtn">Career Resources</a>
+            </div>
+            <div class="dropdown">
+                <a href="chatbott.html" class="dropbtn">AI Guidance</a>
+            </div>
+            <div class="dropdown">
+                <a href="i.html" class="dropbtn">Mentorship</a>
+            </div>
+            <div class="dropdown">
+                <a href="aboutus.html" class="dropbtn">About Us</a>
+            </div>
+        </div>
+        
+        <!-- Profile and Sign Out on the right -->
+        <div class="flex items-center ml-auto">
+            <div class="profile relative">
+                <img src="profile.png" alt="Profile-icon" class="profile-icon cursor-pointer" id="profile-icon">
+                <div class="dropdown-content-profile absolute right-0 mt-20 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl z-20 hidden">
+                    <div class="px-4 py-2 text-sm text-gray-900 font-semibold">
+                        KEREN CHRISTENA OLIVA PULAGALA
+                    </div>
+                    <hr class="border-gray-200">
+                    <a href="profile.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Profile
+                    </a>
+                    <a href="change-password.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Change Password
+                    </a>
+                    <a href="logout.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      
+        
+        // Profile dropdown
+        document.getElementById("profile-icon").addEventListener("click", function(event) {
+            event.stopPropagation();
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            dropdown.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside of it
+        document.addEventListener("click", function(event) {
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            if (!dropdown.contains(event.target) && dropdown.classList.contains("show")) {
+                dropdown.classList.remove("show");
+            }
+        });
+
+    </script>
+
+    <div class="ex">
+        <h1>Exploration</h1>
+    </div>
+    
+    <div class="container">
+        <div class="box">
+            <h2>Skill Development</h2>
+            <p>Dive into a comprehensive library of career-related videos, each tailored to different professional pathways. These videos are designed to provide in-depth insights into various careers, helping you explore your interests, understand industry expectations, and make informed decisions about your future. Whether you're considering a specific field or just beginning your career exploration, these videos offer valuable guidance on the skills, education, and experience needed to succeed.
+            </p>
+            <button class="btn"><a href="sd.html" class="link-btn">Learn More</a></button>
+        </div>
+        <div class="box highlight">
+            <h2>Mind Maps</h2>
+            <p>Our mind maps serve as powerful tools for visualizing your career journey. Each mind map is carefully crafted to break down complex career pathways into manageable steps, providing a clear and structured approach to career planning. These resources help you identify key milestones, skills, and decisions at each stage of your career, empowering you to take charge of your professional development and make strategic choices that align with your goals                .</p>
+            <button class="btn"><a href="sd1.html" class="link-btn">Learn More</a></button>        
+        </div>
+        <div class="box">
+            <h2>Skill Enhancement Test</h2>
+            <p>Boost your skills with our development program, offering quizzes at easy, medium, and hard levels. Begin with day-wise questions at the easy level to build a strong foundation, then progress to more complex challenges. A mentor monitors your progress, providing feedback and guidance to help you excel. This program sharpens your technical skills and critical thinking, essential for career success.</p>
+            <button class="btn"><a href="se.html" class="link-btn">Learn More</a></button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0px;
+            margin: 0px;
+            background-color: #f4f4f9;
+            color: #333;
+            height: 800px;
+        }
+
+        .navbar {
+            background-color: #111b46;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 150px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content, .dropdown-content-profile {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            color: black;
+        }
+
+        .dropdown-content a, .dropdown-content-profile a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content-profile a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .profile-icon {
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .dropdown-content-profile {
+            right: 0;
+        }
+
+        .dropdown-content-profile.show {
+            display: block;
+        }
+
+        /* Slideshow Container */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            height: 400px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Career Options Section */
+        .career-options {
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .career-options h2 {
+            margin-bottom: 20px;
+            color: #00509e;
+        }
+
+        .career-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .career-box {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+            width: 30%;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .career-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .career-box a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .career-content {
+            padding: 15px;
+        }
+
+        .career-content button {
+            background-color: #2765a8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .career-content button:hover {
+            background-color: white;
+            color: #2765a8;
+        }
+
+        .career-content button a {
+            color: inherit; /* Inherit color from button */
+            text-decoration: none;
+        }
+
+        .career-content button:hover a {
+            color: #2765a8; /* Blue text when button is white */
+        }
+        .stay-informed {
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .stay-informed h2 {
+            margin-bottom: 20px;
+            color: #00509e;
+        }
+
+        .informed-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .informed-box {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+            width: 30%;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .informed-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .informed-content {
+            padding: 15px;
+        }
+
+        .informed-content button {
+            background-color: #2765a8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .informed-content button a {
+            text-decoration: none;
+            color: inherit; /* Inherit color from button */
+        }
+
+        .informed-content button:hover {
+            background-color: white;
+            color: #2765a8;
+        }
+
+        .informed-content button:hover a {
+            color: #2765a8; /* Blue text when button is white */
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .faq-container h1 {
+            text-align: center;
+            color: #1809e5c1;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .faq-que {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .faq-que-content {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .faq-que-content:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-ans {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f4f4f4;
+            border-radius: 0 0 5px 5px;
+            margin-top: 10px;
+        }
+
+        .faq-ans p {
+            margin: 0;
+            padding: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        i.fal, i.fa-plus, i.fa-x {
+            font-family: FontAwesome;
+        }
+
+        i.fa-plus::before {
+            content: "\f067"; /* FontAwesome plus icon */
+        }
+
+        i.fa-x::before {
+            content: "\f00d"; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Logo to the left -->
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo2.png" alt="Logo" class="mr-80 h-16 w-40">
+            </a>
+        </div>
+
+        <!-- Centered nav-links -->
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="exploration.html" class="dropbtn">Schools</a>
+                <div class="dropdown-content">
+                    <a href="school8-10.html">8th-10th</a>
+                    <a href="index.html">11th-12th</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="index.html" class="dropbtn">Courses</a>
+                <div class="dropdown-content">
+                    <a href="engineer.html">Engineering</a>
+                    <a href="placement.html">Management</a>
+                    <a href="internshipsweb.html">Media</a>
+                    <a href="placement.html">Animation and Design</a>
+                    <a href="pg.html">Others</a>
+                </div>
+            </div>
+            <a href="exploration.html">Exploration</a>
+            <a href="resourses.html">Career Resources</a>
+            <a href="ai.html">AI Guidance</a>
+            <a href="as.html">Mentorship</a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+
+        <!-- Profile icon to the right -->
+        <div class="flex items-center ml-auto">
+            <div class="profile relative">
+                <img src="profile.png" alt="Profile-icon" class="profile-icon cursor-pointer" id="profile-icon">
+                <div class="dropdown-content-profile absolute right-0 mt-20 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl z-20 hidden">
+                    <div class="px-4 py-2 text-sm text-gray-900 font-semibold">
+                        KEREN CHRISTENA OLIVA PULAGALA
+                    </div>
+                    <hr class="border-gray-200">
+                    <a href="profile.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Profile
+                    </a>
+                    <a href="change-password.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Change Password
+                    </a>
+                    <a href="logout.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+   
+    <script>
+      
+        
+        // Profile dropdown
+        document.getElementById("profile-icon").addEventListener("click", function(event) {
+            event.stopPropagation();
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            dropdown.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside of it
+        document.addEventListener("click", function(event) {
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            if (!dropdown.contains(event.target) && dropdown.classList.contains("show")) {
+                dropdown.classList.remove("show");
+            }
+        });
+
+    </script>
+ </div>
+ <!-- Slideshow Section -->
+ <div class="slideshow-container">
+    <img class="slides" src="i1.jpg" alt="Slide 1">
+    <img class="slides" src="i2.jpg" alt="Slide 2">
+    <img class="slides" src="i3.jpg" alt="Slide 3">
+</div>
+
+<!-- Career Options Section -->
+<section class="career-options">
+    <h2>Explore Engineering Courses</h2>
+    <div class="career-boxes">
+        <div class="career-box">
+            <img src="e1.jpg" alt="Software Engineering">
+            <div class="career-content">
+                <h3>Software Engineering</h3>
+                <p>Design and develop software solutions for a variety of applications.</p>
+                <button><a href="https://www.mtu.edu/cs/undergraduate/software/what/#:~:text=Software%20engineering%20is%20the%20branch,and%20maintenance%20of%20software%20applications." target="_blank">Learn More</a></button>
+            </div>
+        </div>
+        <div class="career-box">
+            <img src="e2.jpg" alt="Civil Engineering">
+            <div class="career-content">
+                <h3>Civil Engineering</h3>
+                <p>Plan, design, and oversee construction projects like roads and buildings.</p>
+                <button><a href="https://www.britannica.com/technology/civil-engineering" target="_blank">Learn More</a></button>
+
+            </div>
+        </div>
+        <div class="career-box">
+            <img src="e3.jpg" alt="Mechanical Engineering">
+            <div class="career-content">
+                <h3>Mechanical Engineering</h3>
+                <p>Design, develop, and test mechanical devices and systems.</p>
+                <button><a href="https://www.mtu.edu/mechanical-aerospace/engineering/#:~:text=Mechanical%20engineering%20is%20one%20of,develop%2C%20build%2C%20and%20test." target="_blank">Learn More</a></button>
+
+            </div>
+        </div>
+        <div class="career-box">
+            <img src="e4.jpg" alt="Electrical Engineering">
+            <div class="career-content">
+                <h3>Electrical Engineering</h3>
+                <p>Work with electrical systems and electronic devices.</p>
+                <button><a href="https://www.mtu.edu/ece/undergraduate/electrical/what-is/" target="_blank">Learn More</a></button>
+
+            </div>
+        </div>
+        <div class="career-box">
+            <img src="e5.jpg" alt="Chemical Engineering">
+            <div class="career-content">
+                <h3>Chemical Engineering</h3>
+                <p>Design processes for manufacturing chemicals and pharmaceuticals.</p>
+                <button><a href="https://cheme.mit.edu/about/what-is-chemical-engineering/" target="_blank">Learn More</a></button>
+
+            </div>
+        </div>
+        <div class="career-box">
+            <img src="e6.jpg" alt="Aerospace Engineering">
+            <div class="career-content">
+                <h3>Aerospace Engineering</h3>
+                <p>Develop aircraft and spacecraft technologies.</p>
+                <button><a href="https://www.britannica.com/technology/aerospace-engineering" target="_blank">Learn More</a></button>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stay Informed Section -->
+<!-- Stay Informed Section -->
+<section class="stay-informed">
+<h2>Stay Informed</h2>
+<div class="informed-boxes">
+    <div class="informed-box">
+        <img src="e7.jpg" alt="Engineering News">
+        <div class="informed-content">
+            <h3>Engineering News</h3>
+            <p>Stay updated with the latest in engineering.</p>
+            <button><a href="https://techxplore.com/engineering-news/" target="_blank">Learn More</a></button>
+        </div>
+    </div>
+    <div class="informed-box">
+        <img src="e8.jpg" alt="Workshops">
+        <div class="informed-content">
+            <h3>Workshops</h3>
+            <p>Join hands-on workshops to enhance your skills.</p>
+            <button><a href="https://nptel.ac.in/workshops" target="_blank">Learn More</a></button>
+        </div>
+    </div>
+    <div class="informed-box">
+        <img src="e9.jpg" alt="Internships">
+        <div class="informed-content">
+            <h3>Internships</h3>
+            <p>Gain practical experience through internships.</p>
+            <button><a href="https://internship.aicte-india.org/index.php" target="_blank">Learn More</a></button>
+        </div>
+    </div>
+    <div class="informed-box">
+        <img src="e10.jpg" alt="Competitions">
+        <div class="informed-content">
+            <h3>Competitions</h3>
+            <p>Participate in engineering competitions and challenges.</p>
+            <button><a href="https://www.borntoengineer.com/resources/engineering-competitions" target="_blank">Learn More</a></button>
+        </div>
+    </div>
+</div>
+</section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq-container">
+        <h1>FAQ</h1>
+        <div class="faq-que">
+            <button class="faq-que-content">
+                What is Engineering?
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-ans">
+                <p>Engineering is the application of scientific principles to design, build, and maintain structures, machines, and processes.</p>
+            </div>
+        </div>
+        <div class="faq-que">
+            <button class="faq-que-content">
+                How can I become an engineer?
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-ans">
+                <p>To become an engineer, you typically need to earn a degree in an engineering discipline and gain practical experience through internships or work placements.</p>
+            </div>
+        </div>
+        <div class="faq-que">
+            <button class="faq-que-content">
+                What are the different fields of engineering?
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-ans">
+                <p>Engineering has various fields, including Civil, Mechanical, Electrical, Chemical, Aerospace, and Software Engineering, among others.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // Slideshow JavaScript
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var slides = document.getElementsByClassName("slides");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        // FAQ Accordion JavaScript
+        var faqButtons = document.querySelectorAll(".faq-que-content");
+        faqButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                var answer = this.nextElementSibling;
+                var icon = this.querySelector("i");
+
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.classList.replace("fa-x", "fa-plus");
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.classList.replace("fa-plus", "fa-x");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

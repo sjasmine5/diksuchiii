@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile and Attendance</title>
+    <style>
+         :root {
+            --primary-color: #00509e;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #003366;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 70px;
+        
+        }
+        .profile-container, .chart-container {
+            width: 48%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            gap: 40px;
+        }
+        .profile-header {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, rgba(24, 7, 59, 0.648) 100%);
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            text-align: center;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid white;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .profile-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .profile-info h2 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #333;
+        }
+        .profile-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .profile-email {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .profile-email a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .profile-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            margin-left: 50px;
+        }
+        .profile-details div {
+            width: 45%;
+        }
+        .profile-footer {
+            margin-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .chart-container {
+            padding: 20px;
+            height: 560px;
+        }
+        .chart-container .header {
+            text-align: center;
+        }
+        .chart-container canvas {
+            margin-top: 30px;
+            max-width: 100%;
+            max-height: 60%;
+        }
+        .dropdown {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .dropdown select {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Profile Section -->
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="girl1.png" alt="Profile Picture" class="profile-img">
+            </div>
+            <div class="profile-info">
+                <h2>SAYONA JASMINE PIDAPARTHI - 460</h2>
+                <p>Diksuchi School, Visakhapatnam</p>
+            </div>
+            <div class="profile-email">
+                <p><a href="mailto:spidapar@gitam.in">spidapar@gmail.com</a></p>
+            </div>
+            <div class="profile-details">
+                <div>
+                    <p><strong>Personal Assessment Score</strong></p>
+                    <p>Sayona's career interest tests and aptitude suggest careers in creative and expressive fields: authors, journalists, architects, fashion designers, and graphic designers.</p>
+                </div>
+                <div>
+                    <p><strong>Batch</strong></p>
+                    <p>2024-2025</p>
+                </div>
+            </div>
+            <div class="profile-footer">
+                <p><strong>Class / Sec / Hostler</strong></p>
+                <p>9 / A / Day Scholar</p>
+                <p><strong>Mentor</strong></p>
+                <p>Jhon Doe - 9440642464</p>
+            </div>
+        </div>
+        
+        <!-- Attendance Chart Section -->
+        <div class="chart-container">
+            <div class="header">
+                <h1>Day wise chart</h1>
+            </div>
+            <div class="dropdown">
+                <select id="monthSelect" onchange="updateChart()">
+                    <option value="Sep-2024">Sep-2024</option>
+                    <!-- Add other month options here -->
+                </select>
+            </div>
+            <canvas id="attendanceChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const data = {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+            datasets: [
+                {
+                    label: 'Completed',
+                    data: [6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: 'green'
+                },
+                {
+                    label: 'Not Completed',
+                    data: [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: 'red'
+                }
+            ]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 8
+                    }
+                }
+            }
+        };
+
+        let attendanceChart = new Chart(ctx, config);
+
+        function updateChart() {
+            const selectedMonth = document.getElementById('monthSelect').value;
+            // Logic to update chart data based on selected month can be added here
+        }
+    </script>
+    
+</body>
+<button class="button-blue" onclick="window.location.href='index.html';">Back</button>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Required Skills Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+           :root {
+            --primary-color: #3336a0;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #003366;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #003366;
+            margin-bottom: 20px;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-buttons button {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px 5px 0 0;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-buttons button:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-buttons button.active {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+            color: white;
+            border-color: #003366;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f1f5f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Custom color class for dark blue */
+        .text-dark-blue {
+            color: #003366;
+        }
+
+        .bg-dark-blue {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    width: 90px;
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Hero Section -->
+    <section class="bg-dark-blue text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-semibold">Required Skills Portal</h1>
+            <p class="mt-4 text-lg md:text-xl">Discover the essential skills needed for various career paths and roles.</p>
+        </div>
+    </section>
+
+    <!-- Required Skills Section -->
+    <section class="container mx-auto py-12 px-4 md:px-0">
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="software-engineering">Software Engineering</button>
+            <button class="tab-button" data-tab="electrical-engineering">Electrical Engineering</button>
+            <button class="tab-button" data-tab="mechanical-engineering">Mechanical Engineering</button>
+            <button class="tab-button" data-tab="chemical-engineering">Chemical Engineering</button>
+            <button class="tab-button" data-tab="civil-engineering">Civil Engineering</button>
+            <button class="tab-button" data-tab="business-development">Business Development</button>
+            <button class="tab-button" data-tab="biotechnology">Biotechnology</button>
+            <button class="tab-button" data-tab="soft-skills">Soft Skills</button>
+        </div>
+
+        <div class="tab-content active" id="software-engineering">
+            <h2 class="text-2xl font-semibold text-dark-blue">Software Engineering</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Programming languages (e.g., Java, Python, C++)</li>
+                <li>Software development methodologies (e.g., Agile, Scrum)</li>
+                <li>Version control systems (e.g., Git)</li>
+                <li>Database management</li>
+                <li>Problem-solving and debugging</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="electrical-engineering">
+            <h2 class="text-2xl font-semibold text-dark-blue">Electrical Engineering</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Circuit design and analysis</li>
+                <li>Electronics and microprocessors</li>
+                <li>Signal processing</li>
+                <li>Power systems and electrical machines</li>
+                <li>Control systems</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="mechanical-engineering">
+            <h2 class="text-2xl font-semibold text-dark-blue">Mechanical Engineering</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Thermodynamics</li>
+                <li>Fluid mechanics</li>
+                <li>Material science</li>
+                <li>Mechanical design and analysis</li>
+                <li>Manufacturing processes</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="chemical-engineering">
+            <h2 class="text-2xl font-semibold text-dark-blue">Chemical Engineering</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Chemical reaction engineering</li>
+                <li>Process design and simulation</li>
+                <li>Heat and mass transfer</li>
+                <li>Thermodynamics</li>
+                <li>Chemical process safety</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="civil-engineering">
+            <h2 class="text-2xl font-semibold text-dark-blue">Civil Engineering</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Structural analysis and design</li>
+                <li>Construction materials</li>
+                <li>Geotechnical engineering</li>
+                <li>Hydraulic engineering</li>
+                <li>Urban planning</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="business-development">
+            <h2 class="text-2xl font-semibold text-dark-blue">Business Development</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Market analysis</li>
+                <li>Sales strategies</li>
+                <li>Customer relationship management</li>
+                <li>Business strategy and planning</li>
+                <li>Negotiation skills</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="biotechnology">
+            <h2 class="text-2xl font-semibold text-dark-blue">Biotechnology</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Genetic engineering</li>
+                <li>Bioprocessing</li>
+                <li>Cell biology</li>
+                <li>Bioinformatics</li>
+                <li>Pharmacology</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="soft-skills">
+            <h2 class="text-2xl font-semibold text-dark-blue">Soft Skills</h2>
+            <ul class="mt-4 list-disc list-inside pl-4">
+                <li>Communication skills</li>
+                <li>Leadership and teamwork</li>
+                <li>Problem-solving abilities</li>
+                <li>Time management</li>
+                <li>Adaptability</li>
+            </ul>
+        </div>
+        <button class="button-blue" onclick="window.location.href='resourses.html';">Back</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-blue text-white p-4 mt-64">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Required Skills Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+                // Show corresponding tab content
+                document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

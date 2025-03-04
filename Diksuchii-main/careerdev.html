@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Development Resources</title>
+    <style>
+            :root {
+            --primary-color: #003366 ;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #3336a0;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .nav-bar {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #003366;
+            border-radius: 4px;
+            color: #003366;
+            margin: 0 0.5rem;
+            background-color: #fff;
+        }
+
+        .nav-bar a.active {
+            background-color: #003366;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .resource-box {
+            flex: 1 1 30%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .resource-box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .resource-box .content {
+            padding: 1rem;
+        }
+
+        .resource-box .content h3 {
+            margin-top: 0;
+        }
+
+        .resource-box .content p {
+            margin: 0.5rem 0;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    width: 90px;
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Career Development Resources</h1>
+    </header>
+
+    <main>
+        <div class="nav-bar">
+            <a href="#" id="all" onclick="filterResources('all')">All Resources</a>
+            <a href="#" id="resume" onclick="filterResources('resume')">Resume & Cover Letter Tips</a>
+            <a href="#" id="interview" onclick="filterResources('interview')">Interview Preparation Guides</a>
+            <a href="#" id="networking" onclick="filterResources('networking')">Networking Strategies</a>
+            <button class="button-blue" onclick="window.location.href='resourses.html';">Back</button>
+        </div>
+        
+
+        <div class="container" id="resourcesContainer">
+            <!-- Resources will be dynamically inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        const resources = {
+            all: [
+                { title: 'Crafting the Perfect Resume', description: 'Learn how to create a standout resume with our tips and examples.', video: 'https://www.youtube.com/embed/VIDEO_ID_1' },
+                { title: 'Cover Letter Essentials', description: 'Understand the key components of an effective cover letter.', video: 'https://www.youtube.com/embed/VIDEO_ID_2' },
+                { title: 'Interview Preparation Tips', description: 'Prepare for your next interview with these essential tips.', video: 'https://www.youtube.com/embed/VIDEO_ID_3' },
+                { title: 'Common Interview Questions', description: 'Get ready for common interview questions and how to answer them.', video: 'https://www.youtube.com/embed/VIDEO_ID_4' },
+                { title: 'Effective Networking Strategies', description: 'Expand your professional network with these strategies.', video: 'https://www.youtube.com/embed/VIDEO_ID_5' },
+                { title: 'Building Professional Relationships', description: 'Learn how to build and maintain professional relationships.', video: 'https://www.youtube.com/embed/VIDEO_ID_6' },
+                { title: 'Advanced Resume Tips', description: 'Explore advanced techniques for crafting a standout resume.', video: 'https://www.youtube.com/embed/VIDEO_ID_7' },
+                { title: 'Mastering the Cover Letter', description: 'A deeper dive into crafting a compelling cover letter.', video: 'https://www.youtube.com/embed/VIDEO_ID_8' },
+                { title: 'Mock Interview Techniques', description: 'Practice and improve your interview skills with mock techniques.', video: 'https://www.youtube.com/embed/VIDEO_ID_9' },
+                { title: 'Networking Events Best Practices', description: 'Tips for making the most of networking events.', video: 'https://www.youtube.com/embed/VIDEO_ID_10' }
+            ],
+            resume: [
+                { title: 'Crafting the Perfect Resume', description: 'Learn how to create a standout resume with our tips and examples.', video: 'https://www.youtube.com/embed/VIDEO_ID_1' },
+                { title: 'Cover Letter Essentials', description: 'Understand the key components of an effective cover letter.', video: 'https://www.youtube.com/embed/VIDEO_ID_2' },
+                { title: 'Advanced Resume Tips', description: 'Explore advanced techniques for crafting a standout resume.', video: 'https://www.youtube.com/embed/VIDEO_ID_7' },
+                { title: 'Mastering the Cover Letter', description: 'A deeper dive into crafting a compelling cover letter.', video: 'https://www.youtube.com/embed/VIDEO_ID_8' }
+            ],
+            interview: [
+                { title: 'Interview Preparation Tips', description: 'Prepare for your next interview with these essential tips.', video: 'https://www.youtube.com/embed/VIDEO_ID_3' },
+                { title: 'Common Interview Questions', description: 'Get ready for common interview questions and how to answer them.', video: 'https://www.youtube.com/embed/VIDEO_ID_4' },
+                { title: 'Mock Interview Techniques', description: 'Practice and improve your interview skills with mock techniques.', video: 'https://www.youtube.com/embed/VIDEO_ID_9' }
+            ],
+            networking: [
+                { title: 'Effective Networking Strategies', description: 'Expand your professional network with these strategies.', video: 'https://www.youtube.com/embed/VIDEO_ID_5' },
+                { title: 'Building Professional Relationships', description: 'Learn how to build and maintain professional relationships.', video: 'https://www.youtube.com/embed/VIDEO_ID_6' },
+                { title: 'Networking Events Best Practices', description: 'Tips for making the most of networking events.', video: 'https://www.youtube.com/embed/VIDEO_ID_10' }
+            ]
+        };
+
+        function filterResources(category) {
+            const container = document.getElementById('resourcesContainer');
+            container.innerHTML = '';
+            
+            document.querySelectorAll('.nav-bar a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.getElementById(category).classList.add('active');
+            
+            if (resources[category]) {
+                resources[category].forEach(resource => {
+                    const box = document.createElement('div');
+                    box.className = 'resource-box';
+                    box.innerHTML = `
+                        <iframe width="100%" height="180" src="${resource.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="content">
+                            <h3>${resource.title}</h3>
+                            <p>${resource.description}</p>
+                        </div>
+                    `;
+                    container.appendChild(box);
+                });
+            }
+        }
+
+        // Initialize with all resources
+        filterResources('all');
+    </script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us & FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #111b46;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 150px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content, .dropdown-content-profile {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            color: black;
+        }
+
+        .dropdown-content a, .dropdown-content-profile a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content-profile a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .profile-icon {
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .dropdown-content-profile {
+            right: 0;
+        }
+
+        .dropdown-content-profile.show {
+            display: block;
+        }
+
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* About Us Section */
+        section#about {
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 50px 20px;
+
+        }
+
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about .banner {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .about .banner img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .aboutcontent {
+            flex: 2;
+        }
+
+        .aboutcontent h1 {
+            font-size: 36px;
+            color: #111b46;
+            margin-bottom: 10px;
+        }
+
+        .aboutcontent h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .aboutcontent p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .aboutcontent .hov1 {
+            padding: 10px 20px;
+            background-color: #1f1f67df;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .faq-container h1 {
+            text-align: center;
+            color: #1f1f67df;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .faq-que {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .faq-que-content {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .faq-que-content:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-ans {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f4f4f4;
+            border-radius: 0 0 5px 5px;
+            margin-top: 10px;
+        }
+
+        .faq-ans p {
+            margin: 0;
+            padding: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        i.fal, i.fa-plus, i.fa-x {
+            font-family: FontAwesome;
+        }
+
+        i.fa-plus::before {
+            content: "\f067"; /* FontAwesome plus icon */
+        }
+
+        i.fa-x::before {
+            content: "\f00d"; /* FontAwesome times icon */
+        }
+    </style>
+</head>
+<body>
+       <!-- Navbar -->
+       <div class="navbar">
+        <!-- Logo to the left -->
+        <div class="logo">
+            <img src="logo2.png" alt="Logo" class="mr-4 size-full p-30">
+        </div>
+
+        <!-- Centered nav-links -->
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="exploration.html" class="dropbtn">Schools</a>
+                <div class="dropdown-content">
+                    <a href="school8-10.html">8th-10th</a>
+                    <a href="index.html">11th-12th</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="engineer.html" class="dropbtn">Courses</a>
+                <div class="dropdown-content">
+                    <a href="engineer.html">Engineering</a>
+                    <a href="placement.html">Management</a>
+                    <a href="internshipsweb.html">Media</a>
+                    <a href="placement.html">Animation and Design</a>
+                    <a href="pg.html">Others</a>
+                </div>
+            </div>
+            <a href="exploration.html">Exploration</a>
+            <a href="resourses.html">Career Resources</a>
+            <a href="chatbott.html">AI Guidance</a>
+            <a href="i.html">Mentorship</a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+
+        <!-- Profile icon to the right -->
+        <div class="flex items-center ml-auto">
+            <div class="profile relative">
+                <img src="profile.png" alt="Profile-icon" class="profile-icon cursor-pointer" id="profile-icon">
+                <div class="dropdown-content-profile absolute right-0 mt-20 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl z-20 hidden">
+                    <div class="px-4 py-2 text-sm text-gray-900 font-semibold">
+                        KEREN CHRISTENA OLIVA PULAGALA
+                    </div>
+                    <hr class="border-gray-200">
+                    <a href="profile.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Profile
+                    </a>
+                    <a href="change-password.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Change Password
+                    </a>
+                    <a href="logout.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+   
+    <script>
+      
+        
+        // Profile dropdown
+        document.getElementById("profile-icon").addEventListener("click", function(event) {
+            event.stopPropagation();
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            dropdown.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside of it
+        document.addEventListener("click", function(event) {
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            if (!dropdown.contains(event.target) && dropdown.classList.contains("show")) {
+                dropdown.classList.remove("show");
+            }
+        });
+
+    </script>
+ </div>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="about">
+            <div class="banner">
+                <img src="career.png" alt="About Us Banner">
+            </div>
+
+            <div class="aboutcontent">
+                <h1>ABOUT US</h1>
+                <h2>Welcome to Diksuchi</h2>
+                <p>Diksuchi, meaning "compass," is a company dedicated to guiding students in 9th and 10th grades toward their ideal careers. We recognize the significant gap in adequate career counselling and guidance in schools, which often results in poor career choices among students. This misalignment can lead to mismatched skills, job dissatisfaction, and even unemployment.</p>
+                <p>In India, many students and their families are unaware of the diverse career opportunities available. As a result, career decisions are frequently made based on limited information or societal pressure. Diksuchi is here to address this issue by providing effective career counselling and guidance, empowering students to make informed decisions about their futures.</p>
+                <p>Our mission aligns with the National Education Policy (NEP) 2020, which emphasizes the importance of holistic education. We believe that guiding students in aligning their education with their career aspirations is essential for their long-term success and satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <div class="container">
+        <section>
+            <div class="faq-container">
+                <h1>Frequently Asked Questions</h1>
+                <div class="faq-items">
+                    <div class="faq-que">
+                        <button class="faq-que-content">What is Diksuchi, and what services do you offer?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p> Diksuchi, meaning "compass," is a career guidance platform designed to help students in 9th and 10th grades explore and identify suitable career paths. We offer personalized career counselling, psychometric assessments, and resources to help students make informed career choices.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-que">
+                        <button class="faq-que-content">Who can benefit from Diksuchi’s services?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p>Our services are ideal for students in 9th and 10th grades, as well as their parents, educators, and schools. We help students explore career options that align with their strengths, interests, and values.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-que">
+                        <button class="faq-que-content">How do you assess a student’s career suitability?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p>We use a combination of psychometric tests, personality assessments, and interest inventories to evaluate a student’s cognitive abilities, emotional intelligence, skills, and preferences. This comprehensive approach helps us recommend career paths that are well-suited to each individual.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-que">
+                        <button class="faq-que-content">What makes Diksuchi different from other career counselling services?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p>Diksuchi integrates a holistic approach by combining traditional career counselling with modern assessments, such as emotional intelligence (EQ), social intelligence (SQ), and adversity quotient (AQ). We also align our services with the National Education Policy (NEP) 2020, ensuring a well-rounded educational and career guidance experience.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-que">
+                        <button class="faq-que-content">How do you ensure that the career advice provided is accurate and reliable?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p>We rely on scientifically validated assessments and tools that are widely recognized in the field of career counselling. Our counsellors are trained professionals who interpret these results to provide personalized and accurate career guidance.
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-que">
+                        <button class="faq-que-content"> How can parents and educators get involved in the career guidance process?
+                            <i class="fal fa-plus"></i></button>
+                        <div class="faq-ans">
+                            <p>We encourage parents and educators to actively participate in the counselling process. We provide them with insights and resources to better understand their child's strengths and career aspirations, ensuring a supportive environment for informed decision-making.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    </section>-->
+    <div class="visme_d" data-title="Untitled Project" data-url="76rdmwvy-untitled-project" data-domain="forms" data-full-page="false" data-min-height="500px" data-form-id="90851"></div><script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script>
+
+    <script>
+        const faqQueContent = document.querySelectorAll(".faq-que-content");
+
+        faqQueContent.forEach((faq) => {
+            faq.addEventListener("click", () => {
+                faq.classList.toggle("active");
+                const faqAns = faq.nextElementSibling;
+
+                if (faqAns.style.maxHeight) {
+                    faqAns.style.maxHeight = null;
+                    faq.querySelector("i").classList.remove("fa-x");
+                    faq.querySelector("i").classList.add("fa-plus");
+                } else {
+                    faqAns.style.maxHeight = faqAns.scrollHeight + "px";
+                    faq.querySelector("i").classList.remove("fa-plus");
+                    faq.querySelector("i").classList.add("fa-x");
+                }
+            });
+        });
+    </script>
+</body>
+<footer class="bg-dark-red text-white  p-8">
+    <div class="container pl-4 ml-36 text-center">
+        <p>&copy; 2024 DIKSUCHI. All rights reserved.</p>
+    </div>
+    <style>/* Define the dark red background color */
+      .bg-dark-red {
+          background-color: #111b46; /* Dark red color */
+          color: #f4f4f4;
+      }
+      
+      /* Optional: Additional styling for the footer */
+      footer {
+          padding: 1rem; /* Padding for the footer */
+      }
+      
+      footer p {
+          margin: 0; /* Remove default margins from the paragraph */
+          font-size: 1rem; /* Font size for the paragraph */
+      }
+      </style>
+  </footer>
+  </body>
+</html>

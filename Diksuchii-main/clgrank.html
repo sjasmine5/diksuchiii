@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Ranking Portal</title>
+    <style>
+           :root {
+            --primary-color: #003366 ;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #3336a0;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+
+        select, button {
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #003366;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #002244;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #003366;
+            color: #fff;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    width: 90px;
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>College Ranking Portal</h1>
+    </header>
+
+    <main>
+        <div class="section">
+            <h2>Explore Latest College Rankings</h2>
+            <select id="rankingCategory">
+                <option value="">Select a category</option>
+                <option value="top">Top-Ranked Colleges</option>
+                <option value="field">Field-Specific Rankings</option>
+                <option value="global">Global and National Rankings</option>
+            </select>
+            <button onclick="loadRankings()">Show Rankings</button>
+        </div>
+
+        <div class="section">
+            <h2>Rankings</h2>
+            <table id="rankingsTable">
+                <thead>
+                    <tr>
+                        <th>College Name</th>
+                        <th>Ranking</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added here by JavaScript -->
+                </tbody>
+            </table>
+            <button class="button-blue" onclick="window.location.href='resourses.html';">Back</button>
+        </div>
+    </main>
+
+  
+
+    <script>
+        const rankings = {
+            top: [
+                { name: 'Indian Institute of Technology, Bombay (IITB)', ranking: 1 },
+                { name: 'Indian Institute of Technology, Delhi (IITD)', ranking: 2 },
+                { name: 'Indian Institute of Technology, Madras (IITM)', ranking: 3 },
+                { name: 'Indian Institute of Technology, Kanpur (IITK)', ranking: 4 },
+                { name: 'Indian Institute of Technology, Kharagpur (IIT-KGP)', ranking: 5 },
+                { name: 'Indian Institute of Science (IISc)', ranking: 6 },
+                { name: 'Jawaharlal Nehru University (JNU)', ranking: 7 },
+                { name: 'University of Delhi (DU)', ranking: 8 },
+                { name: 'University of Mumbai (MU)', ranking: 9 },
+                { name: 'National Institute of Technology, Tiruchirappalli (NITT)', ranking: 10 }
+            ],
+            field: [
+                { name: 'Indian Institute of Technology, Bombay (IITB)', ranking: 1, category: 'Engineering' },
+                { name: 'National Institute of Technology, Tiruchirappalli (NITT)', ranking: 2, category: 'Engineering' },
+                { name: 'Indian Institute of Technology, Kharagpur (IIT-KGP)', ranking: 3, category: 'Engineering' },
+                { name: 'Indian Institute of Science (IISc)', ranking: 1, category: 'Science' },
+                { name: 'Jawaharlal Nehru University (JNU)', ranking: 1, category: 'Social Sciences' },
+                { name: 'All India Institute of Medical Sciences (AIIMS)', ranking: 1, category: 'Medicine' },
+                { name: 'Tata Institute of Fundamental Research (TIFR)', ranking: 2, category: 'Science' }
+            ],
+            global: [
+                { name: 'Indian Institute of Technology, Bombay (IITB)', ranking: 1, category: 'National' },
+                { name: 'Indian Institute of Technology, Delhi (IITD)', ranking: 2, category: 'National' },
+                { name: 'Indian Institute of Technology, Madras (IITM)', ranking: 3, category: 'National' },
+                { name: 'University of Cambridge', ranking: 1, category: 'Global' },
+                { name: 'Massachusetts Institute of Technology (MIT)', ranking: 2, category: 'Global' },
+                { name: 'Stanford University', ranking: 3, category: 'Global' },
+                { name: 'Indian Institute of Science (IISc)', ranking: 4, category: 'Global' },
+                { name: 'University of Oxford', ranking: 5, category: 'Global' }
+            ]
+        };
+
+        function loadRankings() {
+            const category = document.getElementById('rankingCategory').value;
+            const tableBody = document.querySelector('#rankingsTable tbody');
+            tableBody.innerHTML = '';
+
+            if (category && rankings[category]) {
+                rankings[category].forEach(college => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${college.name}</td>
+                        <td>${college.ranking}</td>
+                        <td>${college.category || 'General'}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                alert('Please select a valid category.');
+            }
+        }
+    </script>
+</body>
+<footer style="background-color: #003366; color: #fff; text-align: center; padding: 1rem; margin-top: 330px;">
+    <p>&copy; 2024 College Ranking Portal. All rights reserved.</p>
+</footer>
+</html>

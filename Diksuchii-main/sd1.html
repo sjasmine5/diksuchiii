@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <style>
+          :root {
+            --primary-color: #00509e;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #003366;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            background-color: #ffffff; /* Dark Blue */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .video-wrapper {
+            text-align: center;
+            background: linear-gradient(90deg, rgb(34, 37, 119) 0%, rgba(31, 18, 58, 0.816) 100%); /* Golden */
+            padding: 10px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .video-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        h1 {
+            text-align: center;
+            color: #080312dc; /* Golden */
+            margin-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    transition: background-color var(--transition-speed);
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+
+    <h1>Mind Maps</h1>
+
+    <div class="container">
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im2.png" alt="Video 1" class="video-thumbnail">
+                <p>MindMap 1</p>
+            </a>
+        </div>
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im3.png" alt="Video 2" class="video-thumbnail">
+                <p>MindMap 2</p>
+            </a>
+        </div>
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im1.png" alt="Video 3" class="video-thumbnail">
+                <p>MindMap 3</p>
+            </a>
+        </div>
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im4.png" alt="Video 4" class="video-thumbnail">
+                <p>MindMap 4</p>
+            </a>
+        </div>
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im5.png" alt="Video 5" class="video-thumbnail">
+                <p>MindMap 5</p>
+            </a>
+        </div>
+        <div class="video-wrapper">
+            <a href="https://www.youtube.com/watch?v=5zT_2aBP6vM&t=76s" target="_blank">
+                <img src="im6.png" alt="Video 6" class="video-thumbnail">
+                <p>MindMap 6</p>
+            </a>
+        </div>
+        <button class="button-blue" onclick="window.location.href='exploration.html';">Back</button>
+    </div>
+
+</body>
+</html>

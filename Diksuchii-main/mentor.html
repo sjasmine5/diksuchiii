@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Details</title>
+    <link rel="stylesheet" href="mentor.css">
+    <style>
+           :root {
+            --primary-color: #007BFF ;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #3336a0;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    width: 90px;
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mentor-profile">
+            <img src="mentor.png" alt="Mentor Photo" class="mentor-photo">
+            <h1 class="mentor-name">John Doe</h1>
+            <p class="mentor-title">Senior Data Scientist</p>
+            <p class="mentor-contact">Contact: +123456789</p>
+            <p class="mentor-email">Email: john.doe@example.com</p>
+            <p class="mentor-linkedin"><a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn Profile</a></p>
+        </div>
+        
+        <div class="session-details">
+            <h2>Last Session Remarks</h2>
+            <p class="remarks">"Great progress on the last project. Focus on improving your data visualization skills."</p>
+        </div>
+
+        <div class="discussion-panel">
+            <h2>Doubts/Announcements</h2>
+            <textarea placeholder="Enter your doubts or announcements here..."></textarea>
+            <button class="submit-button">Submit</button>
+            <button class="button-blue" onclick="window.location.href='index.html';">Back</button>
+        </div>
+    </div>
+</body>
+</html>

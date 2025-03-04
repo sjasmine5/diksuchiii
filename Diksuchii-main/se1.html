@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Level Test</title>
+    <style>
+               :root {
+            --primary-color: #00509e;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #003366;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .test-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .test-list li {
+            background-color: #001f3f; /* Dark blue */
+            color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .test-list li:hover {
+            background-color: #FFD700; /* Golden color on hover */
+            color: #001f3f;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 50px;
+    width: 90px;
+    transition: background-color var(--transition-speed);
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Easy Level Test</h1>
+        <ul class="test-list">
+            <li><a href="day1.html">Day 1 Test</a></li>
+            <li><a href="day2.html">Day 2 Test</a></li>
+            <li><a href="day3.html">Day 3 Test</a></li>
+            <li><a href="day4.html">Day 4 Test</a></li>
+            <li><a href="day5.html">Day 5 Test</a></li>
+        </ul>
+    </div>
+    <button class="button-blue" onclick="window.location.href='se.html';">Back</button>
+
+</body>
+</html>

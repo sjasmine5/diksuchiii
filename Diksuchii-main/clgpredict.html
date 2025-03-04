@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Predictor Portal</title>
+    <style>
+           :root {
+            --primary-color: #3336a0  ;
+            --secondary-color: #2765a8;
+            --background-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --hover-bg: #e9f3ff;
+            --text-color: #333333;
+            --link-color: #2765a8;
+            --link-hover-color: #003366;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .form-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #003366;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background: linear-gradient(90deg, rgb(51, 54, 160) 0%, hsla(290, 79%, 13%, 1) 100%);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #002244;
+        }
+
+        .radio-group {
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+        }
+
+        .result-section {
+            margin-top: 30px;
+            background-color: #e9f5ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .result-section h2 {
+            color: #003366;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .result-list li:last-child {
+            border-bottom: none;
+        }
+        .button-blue {
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    width: 90px;
+}
+
+.button-blue:hover {
+    background-color: var(--link-hover-color);
+}
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>College Predictor Portal</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="form-section">
+            <h2>Predict Your College</h2>
+            <div class="radio-group">
+                <label><input type="radio" name="inputType" value="marks" checked> Enter Marks</label>
+                <label><input type="radio" name="inputType" value="rank"> Enter Rank</label>
+            </div>
+            <div class="form-group">
+                <label for="scoreInput">Enter Your Score:</label>
+                <input type="number" id="scoreInput" placeholder="Enter your marks or rank" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Select Your Category:</label>
+                <select id="category">
+                    <option value="General">General</option>
+                    <option value="OBC">OBC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Preferred Location:</label>
+                <select id="location">
+                    <option value="All India">All India</option>
+                    <option value="North India">North India</option>
+                    <option value="South India">South India</option>
+                    <option value="East India">East India</option>
+                    <option value="West India">West India</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button onclick="predictCollege()">Predict College</button>
+            </div>
+        </section>
+
+        <section class="result-section" id="resultSection">
+            <h2>Predicted Colleges</h2>
+            <ul class="result-list" id="resultList">
+                <!-- Predicted colleges will be inserted here -->
+            </ul>
+        </section>
+        <button class="button-blue" onclick="window.location.href='resourses.html';">Back</button>
+    </div>
+
+    <script>
+function predictCollege() {
+    const score = parseInt(document.getElementById('scoreInput').value, 10);
+    const category = document.getElementById('category').value;
+    const location = document.getElementById('location').value;
+    const inputType = document.querySelector('input[name="inputType"]:checked').value;
+
+    const colleges = [
+        { name: "IIT Bombay", scoreCutoff: 900, rank: 1, category: "General", location: "West India" },
+        { name: "IIT Delhi", scoreCutoff: 880, rank: 2, category: "General", location: "North India" },
+        { name: "IIT Madras", scoreCutoff: 850, rank: 3, category: "General", location: "South India" },
+        { name: "IIT Kanpur", scoreCutoff: 820, rank: 4, category: "OBC", location: "North India" },
+        { name: "IIT Kharagpur", scoreCutoff: 800, rank: 5, category: "SC", location: "East India" },
+        { name: "IIT Roorkee", scoreCutoff: 780, rank: 6, category: "ST", location: "North India" },
+        { name: "IIT Guwahati", scoreCutoff: 760, rank: 7, category: "General", location: "East India" },
+        { name: "IIT Hyderabad", scoreCutoff: 740, rank: 8, category: "OBC", location: "South India" },
+        { name: "NIT Trichy", scoreCutoff: 720, rank: 9, category: "SC", location: "South India" },
+        { name: "NIT Warangal", scoreCutoff: 700, rank: 10, category: "ST", location: "South India" },
+        { name: "IIIT Bangalore", scoreCutoff: 690, rank: 11, category: "General", location: "South India" },
+        { name: "BIT Mesra", scoreCutoff: 680, rank: 12, category: "OBC", location: "East India" },
+        { name: "IT BHU", scoreCutoff: 670, rank: 13, category: "SC", location: "North India" },
+        { name: "DTU", scoreCutoff: 660, rank: 14, category: "ST", location: "North India" },
+        { name: "NIT Rourkela", scoreCutoff: 650, rank: 15, category: "General", location: "East India" },
+        { name: "IIIT Hyderabad", scoreCutoff: 640, rank: 16, category: "OBC", location: "South India" },
+        { name: "NIT Surat", scoreCutoff: 630, rank: 17, category: "SC", location: "West India" },
+        { name: "BITS Pilani", scoreCutoff: 620, rank: 18, category: "General", location: "North India" },
+        { name: "NIT Durgapur", scoreCutoff: 610, rank: 19, category: "OBC", location: "East India" },
+        { name: "IIIT Delhi", scoreCutoff: 600, rank: 20, category: "SC", location: "North India" },
+        { name: "VIT Vellore", scoreCutoff: 590, rank: 21, category: "General", location: "South India" },
+        { name: "Thapar University", scoreCutoff: 580, rank: 22, category: "OBC", location: "North India" },
+        { name: "Shiv Nadar University", scoreCutoff: 570, rank: 23, category: "SC", location: "North India" },
+        { name: "Manipal Institute of Technology", scoreCutoff: 560, rank: 24, category: "General", location: "South India" }
+    ];
+
+    const filteredColleges = colleges.filter(college => {
+        if (inputType === 'marks') {
+            return score >= college.scoreCutoff &&
+                (category === college.category || category === "General") &&
+                (location === college.location || location === "All India");
+        } else if (inputType === 'rank') {
+            return score <= college.rank &&
+                (category === college.category || category === "General") &&
+                (location === college.location || location === "All India");
+        }
+    });
+
+    // Sort filtered colleges by rank for better display
+    filteredColleges.sort((a, b) => a.rank - b.rank);
+
+    const resultList = document.getElementById('resultList');
+    resultList.innerHTML = '';
+
+    if (filteredColleges.length > 0) {
+        filteredColleges.forEach(college => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${college.name} - Rank: ${college.rank} - Cutoff Score: ${college.scoreCutoff} - Location: ${college.location}`;
+            resultList.appendChild(listItem);
+        });
+    } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'No colleges found matching your criteria.';
+        resultList.appendChild(listItem);
+    }
+
+    document.getElementById('resultSection').style.display = 'block';
+}
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,518 @@
+ <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Course Platform</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="nav.css" />
+      <style>
+           /* Slideshow container styles */
+           .slideshow-container {
+            max-width: 100%;
+            position: relative;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 2000px;
+            height: 850px;
+            object-fit: cover; 
+        }
+        
+        .dot {
+            height: 15px;
+            width: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from { opacity: .4 }
+            to { opacity: 1 }
+        }
+
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px;
+            }
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .hover-pop:hover {
+            transform: scale(1.05);
+            background-color: #111b46;
+            color: white;
+        }
+
+        @font-face {
+            font-display: fallback;
+            font-family: ProximaNova;
+            src: url(fonts/0d4ec08dc6b105c09ea2f98b104ee5be.woff2) format("woff2"),
+                 url(fonts/700c6aabf7c76ee975ea9ecd1597fc5a.woff) format("woff");
+        }
+        @font-face {
+            font-display: fallback;
+            font-family: ProximaNova;
+            font-weight: 800;
+            src: url(fonts/f9527cb231fbb96f8b847c6bb2577e73.woff2) format("woff2"),
+                 url(fonts/b4f7fae18f78776aecb7aecce2ee96fe.woff) format("woff");
+        }
+        @font-face {
+            font-display: fallback;
+            font-family: ProximaNova;
+            font-style: normal;
+            font-weight: 600;
+            src: url(fonts/4c112e110a336202365ba00324390d27.woff2) format("woff2"),
+                 url(fonts/d4b0fa776100b2a6d092630b50f2108e.woff) format("woff");
+        }
+        @font-face {
+            font-display: fallback;
+            font-family: ProximaNova;
+            font-style: italic;
+            font-weight: 800;
+            src: url(fonts/84d9762503458c60562afc18868f900c.woff2) format("woff2"),
+                 url(fonts/928843c2f85d1df752f538207505d8b8.woff) format("woff");
+        }
+        @font-face {
+            font-display: swap;
+            font-family: ProximaNova;
+            font-style: normal;
+            font-weight: 500;
+            src: url(fonts/5b91b90ca9c385a6a0b2d51801fa0458.woff2) format("woff2"),
+                 url(fonts/9c8e0760bfc4eccefea167de6225d1a5.woff) format("woff");
+        }
+
+        
+        .bg-dark-red { background-color: #8B0000; }
+        .text-dark-red { color: #8B0000; }
+      
+          
+          /* Adjustments to center navbar items */
+          .navbar { 
+    display: flex; 
+    justify-content: center; /* Center the navbar content */
+    padding: 20px 20px; 
+    background: #111b46;
+    color: rgb(0, 0, 0); 
+    align-items: center;
+}
+
+          /* Ensure the logo stays to the left while nav links are centered */
+          .nav-links { 
+              display: flex; 
+              align-items: center; 
+              gap: 15px; 
+          }
+          
+          .nav-links a { 
+              color: #2b1288; 
+              padding: 10px 15px; 
+              text-decoration: none; 
+          }
+          
+          .nav-links .dropdown { 
+              position: relative; 
+              color: #2b1288; 
+          }
+          .nav-links .dropdown a { 
+              position: relative; 
+              color: #2b1288; 
+          }
+          .nav-links .dropdown-content { 
+              display: none; 
+              position: absolute; 
+              background-color: #2b1288; 
+              min-width: 200px; 
+              z-index: 1; 
+          }
+          .nav-links .dropdown .dropbtn {
+    background-color: #111b46;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+          }
+          .nav-links .dropdown-content a { 
+              color: rgb(0, 0, 0); 
+              padding: 10px 15px; 
+              text-decoration: none; 
+              display: block; 
+          }
+          
+          .nav-links .dropdown:hover .dropdown-content { 
+              display: block; 
+          }
+          
+          .profile { 
+              margin-left: 20px; 
+          }
+          
+          .profile-icon { 
+              width: 40px; 
+              border-radius: 50%; 
+          }
+          .nav-feature { 
+              padding: 10px 15px; 
+              color: rgb(0, 0, 0); 
+              cursor: pointer; 
+          }
+          
+          .nav-feature:hover { 
+              text-decoration: underline; 
+          }
+  
+          .shortened { 
+              display: inline-block; 
+              max-width: 200px; 
+              overflow: hidden; 
+              text-overflow: ellipsis; 
+              white-space: nowrap; 
+          }
+          .profile { 
+            margin-left: 20px; 
+        }
+          
+        .profile-icon { 
+            width: 40px; 
+            border-radius: 50%; 
+        }
+          
+        .nav-feature { 
+            padding: 10px 15px; 
+            color: rgb(0, 0, 0); 
+            cursor: pointer; 
+        }
+          
+        .nav-feature:hover { 
+            text-decoration: underline; 
+        }
+       .nav-links .dropdown a{
+            color: #2b1288;
+        }
+
+        .shortened { 
+            display: inline-block; 
+            max-width: 200px; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
+        }
+
+        /* Dropdown content visible */
+        .dropdown-content-profile.show {
+            display: block;
+            
+        }
+        
+
+  .navbar .logo{
+    height: 70px;
+    padding-right: 10px;
+  }
+.logo{
+    margin-right: 300px;
+    height: 490px;
+    width: 180px;
+
+}
+.nav-links a { 
+        color: blue; /* Change to blue */
+        padding: 10px 15px; 
+        text-decoration: none; 
+    }
+    
+    .nav-links .dropdown a { 
+        color: blue; /* Change to blue */
+    }
+.dropbtn{
+    color: blue;
+}
+.navbar .logo {
+    height: 70px;
+    padding-right: 10px;
+    margin-right: 10px; /* Reduced from 300px to 10px */
+}
+
+.sih img {
+    height: 70px;
+    width: auto; /* Ensures consistent sizing with the other logo */
+    padding-left: 10px; /* Adjust padding as necessary */
+}
+
+        
+      </style>
+  </head>
+  <body class="bg-gray-100">
+  
+     
+    <div class="navbar">
+        <!-- Logo to the left -->
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo2.png" alt="Logo" class="h-16 w-40">
+            </a>
+        </div>
+    
+        <!-- SIH Logo -->
+        <div class="sih">
+            <img src="SIH.png" alt="SIH Logo" class="mr-36 h-16 w-40">
+        </div>
+          
+          <!-- Centered nav-links -->
+          <div class="nav-links">
+            
+            <div class="dropdown">
+                
+                <a href="exploration.html" class="dropbtn">Schools</a>
+                <div class="dropdown-content">
+                    <a href="school8-10.html">8th-10th</a>
+                    <a href="index.html">11th-12th</a>
+                </div>
+               
+            </div>
+              <div class="dropdown">
+                  <a href="i.html" class="dropbtn">Courses</a>
+                  <div class="dropdown-content">
+                    <a href="engineer.html">Engineering</a>
+                    <a href="placement.html">Management</a>
+                    <a href="internshipsweb.html">Media</a>
+                    <a href="placement.html">Animation and Design</a>
+                    <a href="internshipsweb.html">Medicine</a>
+
+                </div>
+                  
+              </div>
+              <div class="dropdown">
+                  <a href="exploration.html" class="dropbtn">Exploration</a>
+                 
+              </div>
+            
+              
+              <div class="dropdown">
+                <a href="resourses.html" class="dropbtn">Career Resources</a>
+            </div>
+            
+              <!-- New Navbar Components -->
+              <div class="dropdown">
+                <a href="chatbott.html" class="dropbtn">AI Guidance</a>
+            </div>
+            <div class="dropdown">
+
+                <a href="i.html" class="dropbtn">Mentorship</a>
+            </div>
+            <div class="dropdown">
+                <a href="aboutus.html" class="dropbtn">About Us</a>
+            </div>
+            
+          </div>
+          
+          <!-- Profile and Sign Out on the right -->
+          <div class="flex items-center ml-auto">
+            <div class="profile relative">
+                <img src="profile.png" alt="Profile-icon" class="profile-icon cursor-pointer" id="profile-icon">
+                <div class="dropdown-content-profile absolute right-0 mt-20 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl z-20 hidden">
+                    <div class="px-4 py-2 text-sm text-gray-900 font-semibold">
+                        KEREN CHRISTENA OLIVA PULAGALA
+                    </div>
+                    <hr class="border-gray-200">
+                    <a href="profile.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Profile
+                    </a>
+                    <a href="change-password.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-lock mr-2"></i>Change Password
+                    </a>
+                    <a href="mid.html" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("Profile-icon").addEventListener("click", function(event) {
+                event.stopPropagation();
+                console.log("Profile icon clicked!"); // Check if this logs
+                var dropdown = document.querySelector(".dropdown-content-profile");
+                console.log(dropdown); // Check if this selects the correct element
+                dropdown.classList.toggle("show");
+            });
+            window.addEventListener("click", function() {
+                var dropdown = document.querySelector(".dropdown-content-profile");
+                if (dropdown.classList.contains("show")) {
+                    dropdown.classList.remove("show");
+                }
+            });
+
+        </script>
+        
+      </div>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="pic.jpeg" alt="Slide 1">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="Carousel_1.jpg" alt="Slide 1">
+          </div>
+      
+        <div class="mySlides fade">
+          <img src="Laptop.jpg" alt="Slide 2">
+        </div>
+      
+        <div class="mySlides fade">
+          <img src="Carousel_2.jpg" alt="Slide 3">
+        </div>
+      
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      
+      <div style="text-align:center">
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        <span class="dot"></span>
+      </div>
+
+    <section class="grid grid-cols-4 gap-4 bg-white p-12">
+      <div class="bg-white text-black p-8 border border-gray-200 rounded-xl hover-pop transition duration-300 ease-in-out">
+        <h1 class="text-3xl font-semibold mb-4"> AI Powered Career Guidance</h1>
+        <hr>
+        <h2 class="text-lg mt-4">
+            This platforms use AI chatbot to  guide students ibased on there skills, interests, and academic performance, offering tailored career recommendations. By continuously learning from student interactions, they provide increasingly accurate and personalized guidance, helping students navigate their educational and career paths with confidence.            
+        </h2>
+      </div>
+
+      <div class="bg-white text-black p-8 border border-gray-200 rounded-xl hover-pop transition duration-300 ease-in-out">
+        <h1 class="text-3xl font-semibold mb-4">Career Mentorship Programs</h1>
+        <hr>
+        <h2 class="text-lg mt-4">
+            This system pair students with industry professionals who offer one-on-one guidance, sharing their real-world experiences and career journeys. Through regular interactions, mentors help students set goals, develop critical skills, and gain insights into various industries, making the transition from education to the workforce smoother and more informed.             
+        </h2>
+      </div>
+
+      <div class="bg-white text-black p-8 border border-gray-200 rounded-xl hover-pop transition duration-300 ease-in-out">
+        <h1 class="text-3xl font-semibold mb-4">Career Resource Portals</h1>
+        <hr>
+        <h2 class="text-lg mt-4">
+            This system act as a one-stop shop for career exploration, providing students with access to a vast array of resources. From detailed notes in form of video/simulations or written. to personalized mind maps and many more.                              
+        </h2>
+      </div>
+
+      <div class="bg-white text-black p-8 border border-gray-200 rounded-xl hover-pop transition duration-300 ease-in-out">
+        <h1 class="text-3xl font-semibold mb-4">Exploration Tools</h1>
+        <hr>
+        <h2 class="text-lg mt-4">
+            This system act as a one-stop shop for career exploration, providing students with access to a vast array of resources. From detailed notes in form of video/simulations or written. to personalized mind maps and many more. 
+        </h2>
+      </div>
+    </section>
+
+    <!-- This div is the bottom section of the page -->
+    <div id="bottom"></div>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        // Profile dropdown
+        document.getElementById("profile-icon").addEventListener("click", function(event) {
+            event.stopPropagation();
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            dropdown.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside of it
+        document.addEventListener("click", function(event) {
+            var dropdown = document.querySelector(".dropdown-content-profile");
+            if (!dropdown.contains(event.target) && dropdown.classList.contains("show")) {
+                dropdown.classList.remove("show");
+            }
+        });
+    </script>
+<footer class="bg-dark-red text-white p-4">
+  <div class="container mx-auto text-center">
+      <p>&copy; 2024 DIKSUCHI. All rights reserved.</p>
+  </div>
+  <style>/* Define the dark red background color */
+    .bg-dark-red {
+        background-color: #111b46; /* Dark red color */
+    }
+    
+    /* Optional: Additional styling for the footer */
+    footer {
+        padding: 1rem; /* Padding for the footer */
+    }
+    
+    footer p {
+        margin: 0; /* Remove default margins from the paragraph */
+        font-size: 1rem; /* Font size for the paragraph */
+    }
+    </style>
+</footer>
+</body>
+</html>
+
+
+
+
+

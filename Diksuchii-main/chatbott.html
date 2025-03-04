@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+
+        .chat-header {
+            background-color: #2b1288;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-header img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-message.bot-message {
+            background-color: #f0f0f0;
+            text-align: left;
+            justify-content: flex-start;
+        }
+
+        .chat-message.user-message {
+            background-color: #0c37676f;
+            text-align: right;
+            color: #fff;
+            justify-content: flex-end;
+        }
+
+        .chat-message .message-text {
+            display: inline-block;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .chat-message .message-time {
+            font-size: 12px;
+            color: #888;
+            display: none;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background-color: #2b1288;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background-color: #2b1288;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .bot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="aibot.png" alt="ChatBot Logo"> 
+            <h1>ChatBot</h1>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Example chat messages -->
+           
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Enter your message...">
+            <button onclick="sendMessage()">Send</button>
+            <span style="margin-right: 10px;"></span>
+            <button type="submit" onclick="window.location.href='index.html'" class="submit-btn bg-dark-red text-white px-4 py-2 rounded">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            "job": "There are many jobs available in tech, healthcare, finance, and more. What are you looking for specifically?",
+            "help": "I'm here to help! Ask me anything about careers.",
+            "resume": "I can help you create a strong resume. What job are you applying for?",
+            "interview": "Interview preparation is key! Do you need help with common questions or tips on how to answer?",
+            "skills": "Which skills are you looking to develop? I can suggest courses and resources.",
+            "education": "What level of education are you interested in? I can guide you on degrees and certifications.",
+            "networking": "Networking is crucial for career growth. Would you like tips on how to network effectively?",
+            "remote work": "Remote work opportunities are growing. Are you looking for tips on finding remote jobs or succeeding in them?",
+            "salary": "Salary expectations can vary by industry and location. Which job are you inquiring about?",
+            "promotion": "For promotions, focus on showcasing your skills and contributions. Need specific advice?",
+            "thank you": "You're welcome! If you have any other questions, feel free to ask.",
+            "engineering": "Engineering is a great field with many specializations such as software, civil, mechanical, and electrical engineering. Which one are you interested in?",
+            "finance": "The finance sector includes jobs in banking, investment, accounting, and financial planning. What specific area are you interested in?",
+            "arts": "A career in the arts can include visual arts, performing arts, and design. Which area are you passionate about?",
+            "it": "The IT sector is vast, with roles in software development, network security, data analysis, and more. What interests you the most?",
+            "marketing": "Marketing includes digital marketing, content creation, SEO, and more. What aspect of marketing are you curious about?",
+            "law": "A career in law can involve being a lawyer, paralegal, or legal assistant. Are you interested in a specific legal field?",
+            "Education": "Education careers range from teaching to administration and curriculum development. Which role are you looking into?",
+            "software development": "Software development is a lucrative field with high demand. Are you interested in front-end, back-end, or full-stack development?",
+            "nursing": "Nursing is a rewarding career that requires compassion and dedication. What kind of nursing role are you considering?",
+            "investment banking": "Investment banking involves advising clients on financial transactions and raising capital. Are you interested in corporate finance or mergers and acquisitions?",
+            "graphic design": "Graphic design involves creating visual content for various purposes. What type of design work are you interested in?",
+            "data analysis": "Data analysis involves interpreting data to identify trends and make business decisions. What industry are you interested in analyzing data for?",
+            "cybersecurity": "Cybersecurity focuses on protecting systems and networks from cyber threats. Are you looking to become a security analyst or an ethical hacker?",
+            "hi": "Hi, I am here to guide your career path. Type 'career' to know more.",
+            "hello": "Hi, I am here to guide your career path. Type 'career' to know more.",
+            "career": `Here are some career options you can explore:\n
+            1. Engineer\n
+            2. Business\n
+            3. Healthcare\n
+            4. Arts\n
+            5. IT\n
+            6. Marketing\n
+            7. Law\n
+            8. Education\n
+            Please type the name of the career you're interested in.`,
+            "engineer": "Engixneering is a vast field with various branches like Civil, Mechanical, Electrical, and Software Engineering. Engineers are in high demand in many industries, offering strong job prospects and salaries.",
+            "business": "A career in business can involve roles in management, finance, marketing, and entrepreneurship. Business professionals work in various industries, helping companies grow and succeed.",
+            "healthcare": "Healthcare offers a wide range of careers, from doctors and nurses to administrators and technicians. The healthcare industry is essential and offers job security and opportunities to make a difference.",
+            "arts": "A career in the arts can include visual arts, performing arts, and design. These roles require creativity and passion, and they can be highly rewarding both emotionally and financially.",
+            "it": "The IT sector includes roles in software development, network security, data analysis, and more. It's a fast-growing field with many opportunities for skilled professionals.",
+            "marketing": "Marketing involves promoting products or services through various channels. It includes roles in digital marketing, content creation, SEO, and more, offering creative and dynamic career paths.",
+            "law": "A career in law can involve becoming a lawyer, paralegal, or legal assistant. It requires strong analytical and communication skills and offers opportunities in various legal fields.",
+            "education": "Education careers range from teaching to administration and curriculum development. It's a fulfilling field where you can make a significant impact on students' lives.",
+            "help": "I'm here to help! You can ask me about different career paths, interview tips, resume building, and more. Just type your question.",
+            "default": "I'm not sure how to respond to that. Can you please rephrase?"
+       
+
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.toLowerCase().trim();
+            if (userInput === "") return;
+
+            addUserMessage(userInput);
+            document.getElementById("userInput").value = ""; // Clear input field
+
+            const response = responses[userInput] || "I'm sorry, I don't understand that. Can you please rephrase?";
+            addBotMessage(response);
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById("chatMessages");
+
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("chat-message", "user-message");
+
+            const textElement = document.createElement("div");
+            textElement.classList.add("message-text");
+            textElement.textContent = message;
+
+            const avatarElement = document.createElement("img");
+            avatarElement.classList.add("user-avatar");
+            avatarElement.src = "man.jpg";
+            avatarElement.alt = "User Avatar";
+
+            messageElement.appendChild(textElement);
+            messageElement.appendChild(avatarElement);
+
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const chatMessages = document.getElementById("chatMessages");
+
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("chat-message", "bot-message");
+
+            const avatarElement = document.createElement("img");
+            avatarElement.classList.add("bot-avatar");
+            avatarElement.src = "bot.jpg";
+            avatarElement.alt = "Bot Avatar";
+
+            const textElement = document.createElement("div");
+            textElement.classList.add("message-text");
+            textElement.textContent = message;
+
+            messageElement.appendChild(avatarElement);
+            messageElement.appendChild(textElement);
+
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
